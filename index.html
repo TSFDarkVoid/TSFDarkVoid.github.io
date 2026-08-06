@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DarkVoid's Website</title>
+    <link rel="icon" href="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Background Video Styles */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(11, 15, 25, 0.45);
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            width: 100%;
+        }
+
+        .logo-title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ff4500;
+            object-fit: cover;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: underline;
+            text-decoration-color: #ff4500;
+            text-underline-offset: 6px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(20, 25, 40, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 20px;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: 1px solid rgba(255, 69, 0, 0.3);
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icon.youtube:hover {
+            background-color: #ff0000;
+        }
+
+        .social-icon.tiktok:hover {
+            background-color: #fe2c55;
+        }
+
+        .social-icon.custom-link:hover {
+            background-color: #ff4500;
+        }
+
+        /* Main Content / About Me Section */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-heading {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            text-decoration: underline;
+            text-decoration-color: #ff4500;
+            text-underline-offset: 8px;
+            letter-spacing: 1px;
+        }
+
+        .about-box {
+            background-color: rgba(11, 15, 25, 0.6);
+            border: 1px solid rgba(255, 69, 0, 0.4);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        /* Servers Section */
+        .servers-section-heading {
+            font-size: 38px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto 80px auto;
+        }
+
+        .slider-wrapper {
+            overflow: hidden;
+            border-radius: 16px;
+            background-color: #000000;
+            border: 2px solid rgba(255, 69, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .server-card {
+            min-width: 100%;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .server-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #ff4500;
+        }
+
+        .server-name {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .server-members {
+            font-size: 18px;
+            color: #b0b0b0;
+            margin-bottom: 25px;
+        }
+
+        .join-btn {
+            background-color: #ff4500;
+            color: #ffffff;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        .join-btn:hover {
+            background-color: #e03e00;
+            transform: scale(1.05);
+        }
+
+        /* Navigation Arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .slider-arrow:hover {
+            background-color: rgba(255, 69, 0, 0.8);
+            border-color: #ff4500;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .arrow-left {
+            left: -25px;
+        }
+
+        .arrow-right {
+            right: -25px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 20px;
+            }
+            .slider-container {
+                max-width: 90%;
+            }
+            .arrow-left {
+                left: 10px;
+            }
+            .arrow-right {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video -->
+    <video autoplay muted loop id="bg-video">
+        <source src="./background.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-title-container">
+            <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true" alt="DarkVoid Logo" class="header-logo">
+            <span class="header-title">DarkVoid</span>
+        </div>
+        <div class="social-icons">
+            <a href="https://youtube.com/@TSFDarkVoid" target="_blank" class="social-icon youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://tiktok.com/@darkvoidvr" target="_blank" class="social-icon tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://gtag.pro/tsfdarkvoid" target="_blank" class="social-icon custom-link" title="Profile Link"><i class="fas fa-link"></i></a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h2 class="section-heading">ABOUT ME</h2>
+        <div class="about-box">
+            Hey guys, this is my website. My name is DarkVoid, or more specifically, TSFDarkVoid. As you probably know, I moderate a crazy amount of servers, including GTR, TTT and The Piglets. Moderation is my favorite hobby, it's the only thing I believe I'm good at, amazing at even. Some people wonder how I'm staff everywhere, but anyways, that's it for me.
+        </div>
+    </div>
+
+    <!-- Servers Section -->
+    <h2 class="servers-section-heading">SERVERS I'M STAFF FOR</h2>
+
+    <div class="slider-container" id="sliderContainer">
+        <div class="slider-arrow arrow-left" id="prevBtn"><i class="fas fa-chevron-left"></i></div>
+        <div class="slider-arrow arrow-right" id="nextBtn"><i class="fas fa-chevron-right"></i></div>
+
+        <div class="slider-wrapper">
+            <div class="slider-track" id="sliderTrack">
+
+                <!-- Server 1 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/0741974486f476e6976d1c6f2c4a3fcc-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="TTT Hub Logo" class="server-logo">
+                    <h3 class="server-name">TTT Hub</h3>
+                    <p class="server-members">20K Members</p>
+                    <a href="https://discord.gg/A6qSSSAKGC" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 2 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/d1a1ef4ce57fb7001daa926f59b0eccd-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="The Piglets Logo" class="server-logo">
+                    <h3 class="server-name">The Piglets</h3>
+                    <p class="server-members">16K Members</p>
+                    <a href="https://discord.gg/the-piglets-901551783225229354" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 3 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/07d56a7af55dd64e59d48e69418330b3-ezgif.com-webp-to-jpg-converter-removebg-preview.png?raw=true" alt="Gorilla Tag Ranked Logo" class="server-logo">
+                    <h3 class="server-name">Gorilla Tag Ranked</h3>
+                    <p class="server-members">8K Members</p>
+                    <a href="https://discord.gg/DWr5Pq3kHE" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 4 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/cff181b63d7c88f1f66180a1f3f47cc2-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Ultimate Gorilla Tag Logo" class="server-logo">
+                    <h3 class="server-name">Ultimate Gorilla Tag</h3>
+                    <p class="server-members">3K Members</p>
+                    <a href="https://discord.gg/ugt" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 5 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/d2755751a6bd0dfb5cf465acc5d953ac-ezgif.com-webp-to-jpg-converter-removebg-preview-modified.png?raw=true" alt="Pro Gorilla Tag Logo" class="server-logo">
+                    <h3 class="server-name">Pro Gorilla Tag</h3>
+                    <p class="server-members">7K Members</p>
+                    <a href="https://discord.gg/aQhQ5QETDU" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 6 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/ade1900913eda3715eb36e004bce4204-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Monke Monke Monke League Logo" class="server-logo">
+                    <h3 class="server-name">Monke Monke Monke League</h3>
+                    <p class="server-members">2K Members</p>
+                    <a href="https://discord.gg/kxCnRCg2gN" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 7 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/2db3e985d9c069dc60c94d6c59a7e268-ezgif.com-webp-to-jpg-converter-removebg-preview.png?raw=true" alt="Pro Gorilla League Logo" class="server-logo">
+                    <h3 class="server-name">Pro Gorilla League</h3>
+                    <p class="server-members">1K Members</p>
+                    <a href="https://discord.gg/vmp6Rgp9rh" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 8 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/90b4ac863c69f89cc2303e104cd57e00-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Orb Logo" class="server-logo">
+                    <h3 class="server-name">Orb</h3>
+                    <p class="server-members">4K Members</p>
+                    <a href="https://discord.gg/JUuhExkcfg" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+                <!-- Server 9 -->
+                <div class="server-card">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/5a6a7358056aca28898a286796ae94de-ezgif.com-webp-to-jpg-converter-removebg-preview%20(1)-modified.png?raw=true" alt="Gorilla Tag ESPORTS Logo" class="server-logo">
+                    <h3 class="server-name">Gorilla Tag ESPORTS</h3>
+                    <p class="server-members">1K Members</p>
+                    <a href="https://discord.gg/meBW7cZSWW" target="_blank" class="join-btn">Join Server</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const track = document.getElementById('sliderTrack');
+        const cards = Array.from(track.children);
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const container = document.getElementById('sliderContainer');
+
+        let currentIndex = 0;
+        const totalCards = cards.length;
+        let slideInterval;
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalCards;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+            updateSlider();
+        }
+
+        function startAutoplay() {
+            slideInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopAutoplay() {
+            clearInterval(slideInterval);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+        });
+
+        container.addEventListener('mouseenter', stopAutoplay);
+        container.addEventListener('mouseleave', startAutoplay);
+
+        // Start automatic sliding loop on load
+        startAutoplay();
+    </script>
+</body>
+</html>
