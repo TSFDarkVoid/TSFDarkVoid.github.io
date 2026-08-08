@@ -95,13 +95,13 @@
             animation: logoPulseSmooth 6s infinite ease-in-out;
         }
 
-        /* --- Animated Diagonal Red Shine --- */
+        /* Animated Diagonal Red Shine (Sweeping Left to Right) */
         @keyframes redDiagonalShine {
             0% {
-                background-position: -200% 0;
+                background-position: 200% 0; /* Starts off-screen right */
             }
             100% {
-                background-position: 200% 0;
+                background-position: -200% 0; /* Sweeps across to off-screen left */
             }
         }
 
@@ -110,13 +110,13 @@
             font-weight: bold;
             letter-spacing: 1.5px;
 
-            color: #ffffff;
             background: linear-gradient(
                 120deg,
-                rgba(255,255,255,0.1) 30%,
+                #ffffff 30%,
                 rgba(255, 69, 0, 1) 50%,
-                rgba(255,255,255,0.1) 70%
+                #ffffff 70%
             );
+
             background-size: 200% 100%;
             -webkit-background-clip: text;
             background-clip: text;
