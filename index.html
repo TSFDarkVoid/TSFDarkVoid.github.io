@@ -58,21 +58,47 @@
             gap: 15px;
         }
 
+        /* Pulsing Red Glow Animation for the Logo */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(255, 69, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 69, 0, 0.9), 0 0 40px rgba(255, 69, 0, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(255, 69, 0, 0.4);
+            }
+        }
+
         .header-logo {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             border: 2px solid #ff4500;
             object-fit: cover;
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+
+        /* Shifting White-to-Red Shine Animation for the Text */
+        @keyframes textShine {
+            0%, 70%, 100% {
+                color: #ffffff;
+                text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+            }
+            80%, 90% {
+                color: #ff4500;
+                text-shadow: 0 0 12px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 69, 0, 0.5);
+            }
         }
 
         .header-title {
             font-size: 24px;
             font-weight: bold;
-            color: #ffffff;
             text-decoration: underline;
             text-decoration-color: #ff4500;
             text-underline-offset: 6px;
+            animation: textShine 4s infinite ease-in-out;
         }
 
         .social-icons {
@@ -373,7 +399,7 @@
 
                 <!-- Server 8 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/90b4ac863c69f89cc2303e104cd57e00-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Orb Logo" class="server-logo">
+                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/90b4ac863c69f89cc2303e104cd57e00-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Orb Logo" class="server-logo" style="background-color: #000; object-fit: contain; padding: 5px;">
                     <h3 class="server-name">Orb</h3>
                     <p class="server-members">4K Members</p>
                     <a href="https://discord.gg/JUuhExkcfg" target="_blank" class="join-btn">Join Server</a>
