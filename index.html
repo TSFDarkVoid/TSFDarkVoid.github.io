@@ -73,7 +73,7 @@
             gap: 15px;
         }
 
-        /* --- Logo Glow: Pulses Big to Small Subtly, Never Disappears --- */
+        /* Logo Glow: Pulses Big to Small Subtly, Never Disappears */
         @keyframes logoPulseSmooth {
             0%, 100% {
                 box-shadow: 0 0 8px rgba(255, 69, 0, 0.4);
@@ -95,43 +95,13 @@
             animation: logoPulseSmooth 6s infinite ease-in-out;
         }
 
-        /* --- True Pixel Sparks: Sharp Square Zapping Effects --- */
-        @keyframes pixelSparkZaps {
-            0%, 100% {
-                color: #ffffff;
-                text-shadow:
-                    2px -4px 0px #ffffff,
-                    -6px 3px 0px #ffffff,
-                    5px 5px 0px rgba(255, 69, 0, 0.8),
-                    -4px -5px 0px transparent,
-                    8px -2px 0px transparent;
+        /* --- Animated Diagonal Red Shine --- */
+        @keyframes redDiagonalShine {
+            0% {
+                background-position: -200% 0;
             }
-            25% {
-                color: #ffffff;
-                text-shadow:
-                    -3px -2px 0px #ffffff,
-                    6px -5px 0px #ffffff,
-                    -7px 4px 0px rgba(255, 69, 0, 0.9),
-                    3px 6px 0px #ffffff,
-                    -5px 1px 0px transparent;
-            }
-            50% {
-                color: #ff4500;
-                text-shadow:
-                    4px 3px 0px #ffffff,
-                    -5px -4px 0px #ff4500,
-                    7px -3px 0px #ffffff,
-                    -2px 6px 0px rgba(255, 0, 0, 0.9),
-                    6px 4px 0px #ffffff;
-            }
-            75% {
-                color: #ffffff;
-                text-shadow:
-                    -4px 5px 0px #ffffff,
-                    3px -6px 0px #ffffff,
-                    -6px -3px 0px rgba(255, 69, 0, 0.9),
-                    5px 2px 0px transparent,
-                    -8px 4px 0px #ffffff;
+            100% {
+                background-position: 200% 0;
             }
         }
 
@@ -139,7 +109,20 @@
             font-size: 26px;
             font-weight: bold;
             letter-spacing: 1.5px;
-            animation: pixelSparkZaps 3s infinite steps(4, end);
+
+            color: #ffffff;
+            background: linear-gradient(
+                120deg,
+                rgba(255,255,255,0.1) 30%,
+                rgba(255, 69, 0, 1) 50%,
+                rgba(255,255,255,0.1) 70%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: redDiagonalShine 3s infinite linear;
         }
 
         .social-icons {
