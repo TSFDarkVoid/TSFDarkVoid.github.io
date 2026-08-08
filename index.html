@@ -35,6 +35,7 @@
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
+            padding-top: 90px;
         }
 
         /* Background Video Styles */
@@ -58,13 +59,23 @@
             z-index: -1;
         }
 
-        /* Header Styles */
+        /* Header Styles (Sticky with Black-to-Faded-Red Gradient) */
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            width: 100%;
+            padding: 15px 50px;
+            z-index: 1000;
+
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(120, 20, 10, 0.45));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 69, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .logo-title-container {
@@ -98,10 +109,10 @@
         /* Animated Diagonal Red Shine (Sweeping Left to Right) */
         @keyframes redDiagonalShine {
             0% {
-                background-position: 200% 0; /* Starts off-screen right */
+                background-position: 200% 0;
             }
             100% {
-                background-position: -200% 0; /* Sweeps across to off-screen left */
+                background-position: -200% 0;
             }
         }
 
@@ -123,6 +134,15 @@
             -webkit-text-fill-color: transparent;
 
             animation: redDiagonalShine 3s infinite linear;
+        }
+
+        /* Center Tagline Styled with Italic/Slanted Text (Discord style) */
+        .header-center-text {
+            font-style: italic;
+            font-size: 16px;
+            color: #d0d0d0;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .social-icons {
@@ -310,6 +330,12 @@
             right: -25px;
         }
 
+        @media (max-width: 768px) {
+            .header-center-text {
+                display: none; /* Hides center text on smaller screens so it doesn't overlap */
+            }
+        }
+
         @media (max-width: 600px) {
             header {
                 padding: 15px 20px;
@@ -334,12 +360,18 @@
     </video>
     <div class="video-overlay"></div>
 
-    <!-- Header -->
+    <!-- Header (Sticky with Black-to-Faded-Red Background) -->
     <header>
         <div class="logo-title-container">
             <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/darkvoid-modified.png" alt="DarkVoid Logo" class="header-logo">
             <span class="header-title">DarkVoid</span>
         </div>
+
+        <!-- Center Slanted Text (Discord Style) -->
+        <div class="header-center-text">
+            *DarkVoid's Website*
+        </div>
+
         <div class="social-icons">
             <a href="https://youtube.com/@TSFDarkVoid" target="_blank" class="social-icon youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://tiktok.com/@darkvoidvr" target="_blank" class="social-icon tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
