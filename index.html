@@ -4,7 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DarkVoid's Website</title>
+
+    <!-- Standard Favicon -->
     <link rel="icon" href="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true">
+
+    <!-- Open Graph Meta Tags (Ensures Favicon/Logo previews correctly on Discord, YouTube links, Twitter, etc.) -->
+    <meta property="og:title" content="DarkVoid's Website">
+    <meta property="og:description" content="Official portfolio and community hub for DarkVoid.">
+    <meta property="og:image" content="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true">
+    <meta property="og:url" content="https://tsfdarkvoid.github.io/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DarkVoid's Website">
+    <meta name="twitter:description" content="Official portfolio and community hub for DarkVoid.">
+    <meta name="twitter:image" content="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -58,10 +74,10 @@
             gap: 15px;
         }
 
-        /* --- SLOW & Smooth Pulsing Red Glow for Logo --- */
+        /* --- SUPER SLOW & Smooth Pulsing Red Glow for Logo --- */
         @keyframes pulseGlowSlow {
-            0%, 100% { box-shadow: 0 0 5px rgba(255, 69, 0, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(255, 69, 0, 0.7); }
+            0%, 100% { box-shadow: 0 0 4px rgba(255, 69, 0, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 69, 0, 0.6); }
         }
 
         .header-logo {
@@ -70,42 +86,33 @@
             border-radius: 50%;
             border: 2px solid #ff4500;
             object-fit: cover;
-            animation: pulseGlowSlow 6s infinite ease-in-out;
+            animation: pulseGlowSlow 8s infinite ease-in-out;
         }
 
-        /* --- True Glasses-Style Red Shine Sweep for Text --- */
+        /* --- Header Title with Fat Red Slash Crossing Through It --- */
         .header-title {
             font-size: 24px;
             font-weight: bold;
-            text-decoration: underline;
-            text-decoration-color: #ff4500;
-            text-underline-offset: 6px;
-            position: relative;
             color: #ffffff;
-            overflow: hidden;
+            position: relative;
             display: inline-block;
+            padding: 0 4px;
         }
 
+        /* The Fat Red Slash Element */
         .header-title::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 69, 0, 0.8),
-                transparent
-            );
-            animation: glassShine 4s infinite ease-in-out;
-        }
-
-        @keyframes glassShine {
-            0% { left: -100%; }
-            20% { left: 150%; }
-            100% { left: 150%; }
+            top: 50%;
+            left: -15%;
+            width: 130%;
+            height: 6px; /* Fat thickness */
+            background-color: #ff4500;
+            transform: translateY(-50%) rotate(-25deg); /* Cuts diagonally from left to right */
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+            z-index: 2;
+            pointer-events: none;
         }
 
         .social-icons {
