@@ -73,14 +73,14 @@
             gap: 15px;
         }
 
-        /* --- Clear, Slow-Paced Pulsing Red Glow for Logo --- */
-        @keyframes pulseGlowSlow {
+        /* --- Logo Glow: Pulses Big to Small Subtly, Never Disappears --- */
+        @keyframes logoPulseSmooth {
             0%, 100% {
-                box-shadow: 0 0 5px rgba(255, 69, 0, 0.4), inset 0 0 5px rgba(255, 69, 0, 0.2);
+                box-shadow: 0 0 8px rgba(255, 69, 0, 0.4);
                 border-color: #ff4500;
             }
             50% {
-                box-shadow: 0 0 25px rgba(255, 69, 0, 0.9), 0 0 40px rgba(255, 69, 0, 0.5), inset 0 0 10px rgba(255, 69, 0, 0.5);
+                box-shadow: 0 0 25px rgba(255, 69, 0, 0.9), 0 0 40px rgba(255, 69, 0, 0.5);
                 border-color: #ff6a33;
             }
         }
@@ -92,42 +92,46 @@
             border: 2px solid #ff4500;
             object-fit: cover;
             background-color: #0b0f19;
-            animation: pulseGlowSlow 6s infinite ease-in-out;
+            animation: logoPulseSmooth 6s infinite ease-in-out;
         }
 
-        /* --- Animated Pixel Sparking & Fast Red Flash Text Effect --- */
-        @keyframes textSparkleAndFlash {
+        /* --- True Pixel Sparks: Sharp Square Zapping Effects --- */
+        @keyframes pixelSparkZaps {
             0%, 100% {
                 color: #ffffff;
                 text-shadow:
-                    0 0 2px #ffffff,
-                    0 0 6px #ffffff,
-                    -2px -2px 0px rgba(255,255,255,0.8),
-                    2px 2px 0px rgba(255,255,255,0.8);
+                    2px -4px 0px #ffffff,
+                    -6px 3px 0px #ffffff,
+                    5px 5px 0px rgba(255, 69, 0, 0.8),
+                    -4px -5px 0px transparent,
+                    8px -2px 0px transparent;
             }
-            30% {
+            25% {
                 color: #ffffff;
                 text-shadow:
-                    0 0 4px #ffffff,
-                    0 0 10px #ff4500,
-                    -3px 1px 2px rgba(255,69,0,0.8),
-                    3px -2px 2px rgba(255,255,255,0.9);
+                    -3px -2px 0px #ffffff,
+                    6px -5px 0px #ffffff,
+                    -7px 4px 0px rgba(255, 69, 0, 0.9),
+                    3px 6px 0px #ffffff,
+                    -5px 1px 0px transparent;
             }
             50% {
                 color: #ff4500;
                 text-shadow:
-                    0 0 6px #ff4500,
-                    0 0 16px #ff0000,
-                    0 0 25px #ff0000,
-                    -2px 2px 1px #ffffff,
-                    2px -2px 1px #ffffff;
+                    4px 3px 0px #ffffff,
+                    -5px -4px 0px #ff4500,
+                    7px -3px 0px #ffffff,
+                    -2px 6px 0px rgba(255, 0, 0, 0.9),
+                    6px 4px 0px #ffffff;
             }
-            70% {
-                color: #ff4500;
+            75% {
+                color: #ffffff;
                 text-shadow:
-                    0 0 4px #ff4500,
-                    0 0 10px #ff4500,
-                    1px 3px 2px rgba(255,255,255,0.7);
+                    -4px 5px 0px #ffffff,
+                    3px -6px 0px #ffffff,
+                    -6px -3px 0px rgba(255, 69, 0, 0.9),
+                    5px 2px 0px transparent,
+                    -8px 4px 0px #ffffff;
             }
         }
 
@@ -135,7 +139,7 @@
             font-size: 26px;
             font-weight: bold;
             letter-spacing: 1.5px;
-            animation: textSparkleAndFlash 3.5s infinite ease-in-out;
+            animation: pixelSparkZaps 3s infinite steps(4, end);
         }
 
         .social-icons {
