@@ -58,11 +58,10 @@
             gap: 15px;
         }
 
-        /* --- SLOW Pulsing Red Glow Animation for the Logo --- */
+        /* --- SLOW & Smooth Pulsing Red Glow for Logo --- */
         @keyframes pulseGlowSlow {
-            0% { box-shadow: 0 0 5px rgba(255, 69, 0, 0.4); }
-            50% { box-shadow: 0 0 20px rgba(255, 69, 0, 0.8), 0 0 30px rgba(255, 69, 0, 0.4); }
-            100% { box-shadow: 0 0 5px rgba(255, 69, 0, 0.4); }
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 69, 0, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(255, 69, 0, 0.7); }
         }
 
         .header-logo {
@@ -71,29 +70,42 @@
             border-radius: 50%;
             border: 2px solid #ff4500;
             object-fit: cover;
-            animation: pulseGlowSlow 4s infinite ease-in-out;
+            animation: pulseGlowSlow 6s infinite ease-in-out;
         }
 
-        /* --- Smooth Red Sweep Shine Animation for the Text --- */
-        @keyframes textShineSweep {
-            0%, 75%, 100% {
-                color: #ffffff;
-                text-shadow: 0 0 0 rgba(255, 69, 0, 0);
-            }
-            85% {
-                color: #ff4500;
-                text-shadow: 0 0 12px rgba(255, 69, 0, 0.9), 0 0 25px rgba(255, 69, 0, 0.6);
-            }
-        }
-
+        /* --- True Glasses-Style Red Shine Sweep for Text --- */
         .header-title {
             font-size: 24px;
             font-weight: bold;
             text-decoration: underline;
             text-decoration-color: #ff4500;
             text-underline-offset: 6px;
+            position: relative;
             color: #ffffff;
-            animation: textShineSweep 3.5s infinite ease-in-out;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .header-title::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 69, 0, 0.8),
+                transparent
+            );
+            animation: glassShine 4s infinite ease-in-out;
+        }
+
+        @keyframes glassShine {
+            0% { left: -100%; }
+            20% { left: 150%; }
+            100% { left: 150%; }
         }
 
         .social-icons {
