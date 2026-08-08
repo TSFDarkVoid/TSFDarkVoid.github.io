@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DarkVoid's Website</title>
 
-    <!-- Standard Favicon -->
-    <link rel="icon" href="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true">
+    <!-- Favicon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/darkvoid-modified.png">
 
-    <!-- Open Graph Meta Tags (Ensures Favicon/Logo previews correctly on Discord, YouTube links, Twitter, etc.) -->
+    <!-- Social Media Embed Preview Meta Tags -->
     <meta property="og:title" content="DarkVoid's Website">
     <meta property="og:description" content="Official portfolio and community hub for DarkVoid.">
-    <meta property="og:image" content="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true">
+    <meta property="og:image" content="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/darkvoid-modified.png">
     <meta property="og:url" content="https://tsfdarkvoid.github.io/">
     <meta property="og:type" content="website">
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="DarkVoid's Website">
     <meta name="twitter:description" content="Official portfolio and community hub for DarkVoid.">
-    <meta name="twitter:image" content="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/darkvoid-modified.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -74,10 +73,10 @@
             gap: 15px;
         }
 
-        /* --- SUPER SLOW & Smooth Pulsing Red Glow for Logo --- */
+        /* --- Slow-Paced Gentle Pulsing Red Glow for Logo --- */
         @keyframes pulseGlowSlow {
-            0%, 100% { box-shadow: 0 0 4px rgba(255, 69, 0, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(255, 69, 0, 0.6); }
+            0%, 100% { box-shadow: 0 0 3px rgba(255, 69, 0, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); }
         }
 
         .header-logo {
@@ -86,33 +85,35 @@
             border-radius: 50%;
             border: 2px solid #ff4500;
             object-fit: cover;
-            animation: pulseGlowSlow 8s infinite ease-in-out;
+            background-color: #0b0f19;
+            animation: pulseGlowSlow 6s infinite ease-in-out;
         }
 
-        /* --- Header Title with Fat Red Slash Crossing Through It --- */
+        /* --- Animated Pixel Sparking Text Effect --- */
+        @keyframes textSparkleAndFlash {
+            0%, 100% {
+                color: #ffffff;
+                text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff, 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            35% {
+                color: #ffffff;
+                text-shadow: 0 0 3px #ffffff, 0 0 8px #ffffff, 0 0 15px #ff4500;
+            }
+            50% {
+                color: #ff4500;
+                text-shadow: 0 0 4px #ff4500, 0 0 12px #ff4500, 0 0 22px #ff4500, 0 0 30px #ff0000;
+            }
+            65% {
+                color: #ff4500;
+                text-shadow: 0 0 3px #ff4500, 0 0 8px #ff4500, 0 0 15px #ff4500;
+            }
+        }
+
         .header-title {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
-            color: #ffffff;
-            position: relative;
-            display: inline-block;
-            padding: 0 4px;
-        }
-
-        /* The Fat Red Slash Element */
-        .header-title::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -15%;
-            width: 130%;
-            height: 6px; /* Fat thickness */
-            background-color: #ff4500;
-            transform: translateY(-50%) rotate(-25deg); /* Cuts diagonally from left to right */
-            border-radius: 3px;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
-            z-index: 2;
-            pointer-events: none;
+            letter-spacing: 1.5px;
+            animation: textSparkleAndFlash 4s infinite ease-in-out;
         }
 
         .social-icons {
@@ -327,7 +328,7 @@
     <!-- Header -->
     <header>
         <div class="logo-title-container">
-            <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/darkvoid-modified.png?raw=true" alt="DarkVoid Logo" class="header-logo">
+            <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/darkvoid-modified.png" alt="DarkVoid Logo" class="header-logo">
             <span class="header-title">DarkVoid</span>
         </div>
         <div class="social-icons">
@@ -357,7 +358,7 @@
 
                 <!-- Server 1 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/0741974486f476e6976d1c6f2c4a3fcc-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="TTT Hub Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/0741974486f476e6976d1c6f2c4a3fcc-ezgif.com-webp-to-jpg-converter-modified.png" alt="TTT Hub Logo" class="server-logo">
                     <h3 class="server-name">TTT Hub</h3>
                     <p class="server-members">20K Members</p>
                     <a href="https://discord.gg/A6qSSSAKGC" target="_blank" class="join-btn">Join Server</a>
@@ -365,7 +366,7 @@
 
                 <!-- Server 2 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/d1a1ef4ce57fb7001daa926f59b0eccd-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="The Piglets Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/d1a1ef4ce57fb7001daa926f59b0eccd-ezgif.com-webp-to-jpg-converter-modified.png" alt="The Piglets Logo" class="server-logo">
                     <h3 class="server-name">The Piglets</h3>
                     <p class="server-members">16K Members</p>
                     <a href="https://discord.gg/the-piglets-901551783225229354" target="_blank" class="join-btn">Join Server</a>
@@ -373,7 +374,7 @@
 
                 <!-- Server 3 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/07d56a7af55dd64e59d48e69418330b3-ezgif.com-webp-to-jpg-converter-removebg-preview.png?raw=true" alt="Gorilla Tag Ranked Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/07d56a7af55dd64e59d48e69418330b3-ezgif.com-webp-to-jpg-converter-removebg-preview.png" alt="Gorilla Tag Ranked Logo" class="server-logo">
                     <h3 class="server-name">Gorilla Tag Ranked</h3>
                     <p class="server-members">8K Members</p>
                     <a href="https://discord.gg/DWr5Pq3kHE" target="_blank" class="join-btn">Join Server</a>
@@ -381,7 +382,7 @@
 
                 <!-- Server 4 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/cff181b63d7c88f1f66180a1f3f47cc2-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Ultimate Gorilla Tag Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/cff181b63d7c88f1f66180a1f3f47cc2-ezgif.com-webp-to-jpg-converter-modified.png" alt="Ultimate Gorilla Tag Logo" class="server-logo">
                     <h3 class="server-name">Ultimate Gorilla Tag</h3>
                     <p class="server-members">3K Members</p>
                     <a href="https://discord.gg/ugt" target="_blank" class="join-btn">Join Server</a>
@@ -389,7 +390,7 @@
 
                 <!-- Server 5 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/d2755751a6bd0dfb5cf465acc5d953ac-ezgif.com-webp-to-jpg-converter-removebg-preview-modified.png?raw=true" alt="Pro Gorilla Tag Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/d2755751a6bd0dfb5cf465acc5d953ac-ezgif.com-webp-to-jpg-converter-removebg-preview-modified.png" alt="Pro Gorilla Tag Logo" class="server-logo">
                     <h3 class="server-name">Pro Gorilla Tag</h3>
                     <p class="server-members">7K Members</p>
                     <a href="https://discord.gg/aQhQ5QETDU" target="_blank" class="join-btn">Join Server</a>
@@ -397,7 +398,7 @@
 
                 <!-- Server 6 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/ade1900913eda3715eb36e004bce4204-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Monke Monke Monke League Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/ade1900913eda3715eb36e004bce4204-ezgif.com-webp-to-jpg-converter-modified.png" alt="Monke Monke Monke League Logo" class="server-logo">
                     <h3 class="server-name">Monke Monke Monke League</h3>
                     <p class="server-members">2K Members</p>
                     <a href="https://discord.gg/kxCnRCg2gN" target="_blank" class="join-btn">Join Server</a>
@@ -405,7 +406,7 @@
 
                 <!-- Server 7 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/2db3e985d9c069dc60c94d6c59a7e268-ezgif.com-webp-to-jpg-converter-removebg-preview.png?raw=true" alt="Pro Gorilla League Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/2db3e985d9c069dc60c94d6c59a7e268-ezgif.com-webp-to-jpg-converter-removebg-preview.png" alt="Pro Gorilla League Logo" class="server-logo">
                     <h3 class="server-name">Pro Gorilla League</h3>
                     <p class="server-members">1K Members</p>
                     <a href="https://discord.gg/vmp6Rgp9rh" target="_blank" class="join-btn">Join Server</a>
@@ -413,7 +414,7 @@
 
                 <!-- Server 8 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/90b4ac863c69f89cc2303e104cd57e00-ezgif.com-webp-to-jpg-converter-modified.png?raw=true" alt="Orb Logo" class="server-logo" style="background-color: #000; object-fit: contain; padding: 5px;">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/90b4ac863c69f89cc2303e104cd57e00-ezgif.com-webp-to-jpg-converter-modified.png" alt="Orb Logo" class="server-logo" style="background-color: #000; object-fit: contain; padding: 5px;">
                     <h3 class="server-name">Orb</h3>
                     <p class="server-members">4K Members</p>
                     <a href="https://discord.gg/JUuhExkcfg" target="_blank" class="join-btn">Join Server</a>
@@ -421,7 +422,7 @@
 
                 <!-- Server 9 -->
                 <div class="server-card">
-                    <img src="https://github.com/TSFDarkVoid/TSFDarkVoid.github.io/blob/main/5a6a7358056aca28898a286796ae94de-ezgif.com-webp-to-jpg-converter-removebg-preview%20(1)-modified.png?raw=true" alt="Gorilla Tag ESPORTS Logo" class="server-logo">
+                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/5a6a7358056aca28898a286796ae94de-ezgif.com-webp-to-jpg-converter-removebg-preview%20(1)-modified.png" alt="Gorilla Tag ESPORTS Logo" class="server-logo">
                     <h3 class="server-name">Gorilla Tag ESPORTS</h3>
                     <p class="server-members">1K Members</p>
                     <a href="https://discord.gg/meBW7cZSWW" target="_blank" class="join-btn">Join Server</a>
@@ -475,7 +476,6 @@
         container.addEventListener('mouseenter', stopAutoplay);
         container.addEventListener('mouseleave', startAutoplay);
 
-        // Start automatic sliding loop on load
         startAutoplay();
     </script>
 </body>
