@@ -35,7 +35,7 @@
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
-            padding-top: 90px;
+            padding-top: 100px;
         }
 
         /* Background Video Styles */
@@ -59,7 +59,7 @@
             z-index: -1;
         }
 
-        /* Header Styles (Sticky with Black-to-Faded-Red Gradient) */
+        /* Header Styles (Locked Single-Row Layout for All Screen Sizes) */
         header {
             position: fixed;
             top: 0;
@@ -68,7 +68,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
+            padding: 12px 25px;
             z-index: 1000;
 
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(120, 20, 10, 0.45));
@@ -76,12 +76,14 @@
             -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid rgba(255, 69, 0, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            white-space: nowrap;
         }
 
         .logo-title-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         /* Logo Glow: Pulses Big to Small Subtly, Never Disappears */
@@ -97,8 +99,8 @@
         }
 
         .header-logo {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             border: 2px solid #ff4500;
             object-fit: cover;
@@ -117,9 +119,9 @@
         }
 
         .header-title {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: bold;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
 
             background: linear-gradient(
                 120deg,
@@ -138,36 +140,40 @@
 
         /* Center Styled Text */
         .header-center-text {
-            font-size: 20px;
+            font-size: 16px;
             color: #ffffff;
             letter-spacing: 0.5px;
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
             font-weight: normal;
+            margin: 0 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .social-icons {
             display: flex;
-            gap: 20px;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .social-icon {
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background-color: rgba(20, 25, 40, 0.8);
             display: flex;
             justify-content: center;
             align-items: center;
             color: #ffffff;
-            font-size: 20px;
+            font-size: 17px;
             text-decoration: none;
             transition: transform 0.3s ease, background-color 0.3s ease;
             border: 1px solid rgba(255, 69, 0, 0.3);
         }
 
         .social-icon img {
-            width: 29px;
-            height: 29px;
+            width: 24px;
+            height: 24px;
             object-fit: contain;
             image-rendering: -webkit-optimize-contrast;
             filter: grayscale(100%) brightness(200%);
@@ -382,15 +388,9 @@
             right: -25px;
         }
 
-        @media (max-width: 768px) {
-            .header-center-text {
-                display: none;
-            }
-        }
-
         @media (max-width: 600px) {
             header {
-                padding: 15px 20px;
+                padding: 10px 15px;
             }
             .slider-container {
                 max-width: 90%;
@@ -507,21 +507,13 @@
 
                 <!-- Server 6 -->
                 <div class="server-card">
-                    <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/ade1900913eda3715eb36e004bce4204-ezgif.com-webp-to-jpg-converter-modified.png" alt="Monke Monke Monke League Logo" class="server-logo">
-                    <h3 class="server-name">Monke Monke Monke League</h3>
-                    <p class="server-members">2K Members</p>
-                    <a href="https://discord.gg/kxCnRCg2gN" target="_blank" class="join-btn">Join Server</a>
-                </div>
-
-                <!-- Server 7 -->
-                <div class="server-card">
                     <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/2db3e985d9c069dc60c94d6c59a7e268-ezgif.com-webp-to-jpg-converter-removebg-preview.png" alt="Pro Gorilla League Logo" class="server-logo">
                     <h3 class="server-name">Pro Gorilla League</h3>
                     <p class="server-members">1K Members</p>
                     <a href="https://discord.gg/vmp6Rgp9rh" target="_blank" class="join-btn">Join Server</a>
                 </div>
 
-                <!-- Server 8 -->
+                <!-- Server 7 -->
                 <div class="server-card">
                     <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/90b4ac863c69f89cc2303e104cd57e00-ezgif.com-webp-to-jpg-converter-modified.png" alt="Orb Logo" class="server-logo" style="background-color: #000; object-fit: contain; padding: 5px;">
                     <h3 class="server-name">Orb</h3>
@@ -529,7 +521,7 @@
                     <a href="https://discord.gg/JUuhExkcfg" target="_blank" class="join-btn">Join Server</a>
                 </div>
 
-                <!-- Server 9 -->
+                <!-- Server 8 -->
                 <div class="server-card">
                     <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/5a6a7358056aca28898a286796ae94de-ezgif.com-webp-to-jpg-converter-removebg-preview%20(1)-modified.png" alt="Gorilla Tag ESPORTS Logo" class="server-logo">
                     <h3 class="server-name">Gorilla Tag ESPORTS</h3>
