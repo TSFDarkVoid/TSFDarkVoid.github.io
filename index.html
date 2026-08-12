@@ -345,11 +345,12 @@
             width: fit-content;
         }
 
-        @keyframes pulse-glow {
+        /* Slowed down pulse animation to trigger every 2 seconds */
+        @keyframes pulse-glow-2s {
             0% {
                 box-shadow: 0 0 0 0px rgba(255, 255, 255, 1);
             }
-            50% {
+            15% {
                 box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
             }
             100% {
@@ -364,7 +365,7 @@
             border-radius: 50%;
             margin-right: 8px;
             display: inline-block;
-            animation: pulse-glow 0.5s infinite linear; /* Glowing white effect that goes larger and disappears */
+            animation: pulse-glow-2s 2s infinite linear; /* Glowing white effect every 2 seconds */
         }
 
         .position-text {
@@ -647,10 +648,10 @@
                 <div class="server-card">
                     <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/ade1900913eda3715eb36e004bce4204-ezgif.com-webp-to-jpg-converter-modified.png" alt="Monke Monke Monke League Logo" class="server-logo">
                     <h3 class="server-name">Monke Monke Monke League</h3>
-                    <p class="server-members">Server</p>
+                    <p class="server-members">2K Members</p>
                     <div class="position-tag-wrapper">
                         <span class="status-dot"></span>
-                        <span class="position-text">Staff</span>
+                        <span class="position-text">Paid Trial Moderator</span>
                     </div>
                     <a href="https://discord.gg/kxCnRCg2gN" target="_blank" class="join-btn">Join Server</a>
                 </div>
