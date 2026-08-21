@@ -336,16 +336,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #2c2f33; /* Round grey thing background */
+            background-color: #2c2f33;
             padding: 5px 14px;
-            border-radius: 50px; /* Fully round pill */
+            border-radius: 50px;
             margin-bottom: 25px;
             border: 1px solid #4f545c;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             width: fit-content;
         }
 
-        /* Slowed down pulse animation to trigger every 2 seconds */
         @keyframes pulse-glow-2s {
             0% {
                 box-shadow: 0 0 0 0px rgba(255, 255, 255, 1);
@@ -361,11 +360,11 @@
         .status-dot {
             width: 8px;
             height: 8px;
-            background-color: #43b581; /* Green emoji dot */
+            background-color: #43b581;
             border-radius: 50%;
             margin-right: 8px;
             display: inline-block;
-            animation: pulse-glow-2s 2s infinite linear; /* Glowing white effect every 2 seconds */
+            animation: pulse-glow-2s 2s infinite linear;
         }
 
         .position-text {
@@ -374,7 +373,6 @@
             color: #ffffff;
             letter-spacing: 0.3px;
         }
-        /* --------------------------------------------------------- */
 
         .join-btn {
             background-color: #ff4500;
@@ -427,7 +425,7 @@
             right: -25px;
         }
 
-        /* --- MOBILE-ONLY STYLES (Does not touch Desktop) --- */
+        /* --- MOBILE-ONLY STYLES --- */
         @media (max-width: 768px) {
             body {
                 padding-top: 100px;
@@ -452,7 +450,6 @@
                 font-size: 22px;
             }
 
-            /* Hide the middle text on mobile so icons don't bump into it */
             .header-center-text {
                 display: none;
             }
@@ -495,32 +492,28 @@
     </video>
     <div class="video-overlay"></div>
 
-    <!-- Header (Sticky with Black-to-Faded-Red Gradient) -->
+    <!-- Header -->
     <header>
         <div class="logo-title-container">
             <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/darkvoid-modified.png" alt="DarkVoid Logo" class="header-logo">
             <span class="header-title">DarkVoid</span>
         </div>
 
-        <!-- Center Styled Text -->
         <div class="header-center-text">
             𝑫𝒂𝒓𝒌𝑽𝒐𝒊𝒅'𝒔 𝑾𝒆𝒃𝒔𝒊𝒕𝒆
         </div>
 
         <div class="social-icons">
-            <!-- YouTube Icon with Tooltip -->
             <div class="tooltip-wrapper">
                 <a href="https://youtube.com/@TSFDarkVoid" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
                 <div class="tooltip-box">YouTube</div>
             </div>
 
-            <!-- TikTok Icon with Tooltip -->
             <div class="tooltip-wrapper">
                 <a href="https://tiktok.com/@darkvoidvr" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
                 <div class="tooltip-box">TikTok</div>
             </div>
 
-            <!-- Custom gtag.pro Icon with Tooltip -->
             <div class="tooltip-wrapper">
                 <a href="https://gtag.pro/tsfdarkvoid" target="_blank" class="social-icon custom-link">
                     <img src="https://raw.githubusercontent.com/TSFDarkVoid/TSFDarkVoid.github.io/main/favicon-tbn-removebg-preview.png" alt="gtag.pro">
@@ -632,9 +625,9 @@
                     <a href="https://discord.gg/JUuhExkcfg" target="_blank" class="join-btn">Join Server</a>
                 </div>
 
-                <!-- Server 8: ivi VR Esports -->
+                <!-- Server 8: ivi VR Esports (Fixed Animated URL) -->
                 <div class="server-card">
-                    <img src="https://cdn.discordapp.com/icons/1118645063852552273/a_d560329ee0d0b4c6c4daa0649622968c.webp" alt="ivi VR Esports Logo" class="server-logo">
+                    <img src="https://cdn.discordapp.com/icons/1118645063852552273/a_d560329ee0d0b4c6c4daa0649622968c.gif?size=256" alt="ivi VR Esports Logo" class="server-logo">
                     <h3 class="server-name">ivi VR Esports</h3>
                     <p class="server-members">1K Members</p>
                     <div class="position-tag-wrapper">
