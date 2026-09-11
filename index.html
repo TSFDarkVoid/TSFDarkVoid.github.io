@@ -264,7 +264,7 @@
             border-radius: 12px;
             padding: 25px 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            text-align: center; /* Centered text inside the box */
+            text-align: center;
             font-size: 20px;
             line-height: 1.6;
             margin-bottom: 60px;
@@ -430,6 +430,61 @@
             right: -25px;
         }
 
+        /* --- Photography Section Styles --- */
+        .photography-section-heading {
+            font-size: 38px;
+            font-weight: bold;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .photo-grid {
+            max-width: 1100px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .photo-card {
+            background-color: rgba(11, 15, 25, 0.6);
+            border: 1px solid rgba(255, 69, 0, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff4500;
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 69, 0, 0.3);
+        }
+
+        .photo-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
         /* --- MOBILE-ONLY STYLES --- */
         @media (max-width: 768px) {
             body {
@@ -485,6 +540,17 @@
 
             .arrow-right {
                 right: 10px;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -672,6 +738,34 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <!-- Photography Section -->
+    <h2 class="photography-section-heading">PHOTOGRAPHY</h2>
+    <div class="photo-grid">
+        <!-- Photo 1 -->
+        <div class="photo-card">
+            <img src="./Good Monke Mall (1).jpeg" alt="Good Monke Mall" class="photo-img">
+            <h3 class="photo-title">Good Monke Mall</h3>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="photo-card">
+            <img src="./Caves (1).jpeg" alt="Caves" class="photo-img">
+            <h3 class="photo-title">Caves</h3>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="photo-card">
+            <img src="./City (1).jpeg" alt="City" class="photo-img">
+            <h3 class="photo-title">City</h3>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="photo-card">
+            <img src="./1000056451.jpeg" alt="Mountains" class="photo-img">
+            <h3 class="photo-title">Mountains</h3>
         </div>
     </div>
 
