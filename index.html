@@ -461,6 +461,7 @@
             padding: 15px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
         }
 
         .photo-card:hover {
@@ -475,6 +476,7 @@
             border-radius: 8px;
             margin-bottom: 12px;
             border: 1px solid rgba(255, 69, 0, 0.3);
+            pointer-events: none; /* Let card handle the click */
         }
 
         .photo-title {
@@ -483,6 +485,78 @@
             color: #ffffff;
             text-align: center;
             letter-spacing: 0.5px;
+        }
+
+        /* --- Lightbox Modal Styles --- */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 90%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 2px solid #ff4500;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+        }
+
+        .lightbox-caption {
+            margin-top: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+            z-index: 2001;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: #ff4500;
+            transform: scale(1.1);
         }
 
         /* --- MOBILE-ONLY STYLES --- */
@@ -545,6 +619,12 @@
             .photo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
+            }
+
+            .lightbox-close {
+                top: 15px;
+                right: 20px;
+                font-size: 35px;
             }
         }
 
@@ -745,27 +825,36 @@
     <h2 class="photography-section-heading">PHOTOGRAPHY</h2>
     <div class="photo-grid">
         <!-- Photo 1 -->
-        <div class="photo-card">
+        <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall">
             <img src="./Good Monke Mall (1).jpeg" alt="Good Monke Mall" class="photo-img">
             <h3 class="photo-title">Good Monke Mall</h3>
         </div>
 
         <!-- Photo 2 -->
-        <div class="photo-card">
+        <div class="photo-card" data-img="./Caves (1).jpeg" data-title="Caves">
             <img src="./Caves (1).jpeg" alt="Caves" class="photo-img">
             <h3 class="photo-title">Caves</h3>
         </div>
 
         <!-- Photo 3 -->
-        <div class="photo-card">
+        <div class="photo-card" data-img="./City (1).jpeg" data-title="City">
             <img src="./City (1).jpeg" alt="City" class="photo-img">
             <h3 class="photo-title">City</h3>
         </div>
 
         <!-- Photo 4 -->
-        <div class="photo-card">
+        <div class="photo-card" data-img="./1000056451.jpeg" data-title="Mountains">
             <img src="./1000056451.jpeg" alt="Mountains" class="photo-img">
             <h3 class="photo-title">Mountains</h3>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal Popup -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <div class="lightbox-content-wrapper">
+            <img src="" alt="Zoomed Photo" class="lightbox-img" id="lightboxImg">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
         </div>
     </div>
 
@@ -832,6 +921,47 @@
         container.addEventListener('mouseleave', startAutoplay);
 
         startAutoplay();
+
+        // Lightbox Zoom Script
+        const photoCards = document.querySelectorAll('.photo-card');
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        photoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const imgSrc = card.getAttribute('data-img');
+                const imgTitle = card.getAttribute('data-title');
+
+                lightboxImg.src = imgSrc;
+                lightboxCaption.textContent = imgTitle;
+                lightboxModal.classList.add('active');
+            });
+        });
+
+        function closeLightbox() {
+            lightboxModal.classList.remove('active');
+            setTimeout(() => {
+                lightboxImg.src = ''; // Clear source after fade out
+            }, 300);
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close when clicking anywhere outside the image background
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+
+        // Close on pressing the ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 </html>
