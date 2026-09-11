@@ -244,18 +244,19 @@
             padding: 0 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .section-heading {
             font-size: 32px;
             font-weight: bold;
             margin-bottom: 25px;
-            text-align: center;
+            text-align: left;
             text-decoration: underline;
             text-decoration-color: #ff4500;
             text-underline-offset: 8px;
             letter-spacing: 1px;
+            width: 100%;
         }
 
         .about-box {
@@ -264,28 +265,12 @@
             border-radius: 12px;
             padding: 25px 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            text-align: left; /* Left-aligned so text streams naturally */
+            text-align: left;
             font-size: 20px;
             line-height: 1.6;
             margin-bottom: 60px;
             width: 100%;
             min-height: 125px;
-        }
-
-        /* Typing Effect Cursor */
-        .typing-cursor {
-            display: inline-block;
-            background-color: #ff4500;
-            width: 3px;
-            height: 22px;
-            margin-left: 3px;
-            vertical-align: middle;
-            animation: blinkCursor 0.8s infinite;
-        }
-
-        @keyframes blinkCursor {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
         }
 
         /* Servers Section */
@@ -553,7 +538,7 @@
     <div class="container">
         <h2 class="section-heading">ABOUT ME</h2>
         <div class="about-box">
-            <span id="typing-text"></span><span class="typing-cursor"></span>
+            <span id="typing-text"></span>
         </div>
     </div>
 
