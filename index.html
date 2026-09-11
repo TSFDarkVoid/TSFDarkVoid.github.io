@@ -239,7 +239,7 @@
 
         /* Main Content / About Me Section */
         .container {
-            max-width: 900px;
+            max-width: 750px;
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
@@ -262,13 +262,33 @@
             background-color: rgba(11, 15, 25, 0.6);
             border: 1px solid rgba(255, 69, 0, 0.4);
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             text-align: center;
-            font-size: 18px;
+            font-size: 20px;
             line-height: 1.6;
             margin-bottom: 60px;
             width: 100%;
+            min-height: 125px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Typing Effect Cursor */
+        .typing-cursor {
+            display: inline-block;
+            background-color: #ff4500;
+            width: 3px;
+            height: 22px;
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         /* Servers Section */
@@ -536,7 +556,7 @@
     <div class="container">
         <h2 class="section-heading">ABOUT ME</h2>
         <div class="about-box">
-            Heya, my name is DarkVoid, I also go by Dark, Void, or TSFDarkVoid. I'm a moderation professional alongside a gorilla tag photographer, and this is my website. Here you will see the servers I'm staff for alongside the pictures I've taken and have edited.
+            <span id="typing-text"></span><span class="typing-cursor"></span>
         </div>
     </div>
 
@@ -675,6 +695,24 @@
     </div>
 
     <script>
+        // Typing Effect Script
+        const textToType = "Heya, my name is DarkVoid, I also go by Dark, Void, or TSFDarkVoid. I'm a moderation professional alongside a gorilla tag photographer, and this is my website. Here you will see the servers I'm staff for alongside the pictures I've taken and have edited.";
+        const typingElement = document.getElementById("typing-text");
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < textToType.length) {
+                typingElement.textContent += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, 25); // Speed of typing (lower = faster)
+            }
+        }
+
+        window.addEventListener("load", () => {
+            setTimeout(typeText, 400); // Small delay before typing starts
+        });
+
+        // Slider Script
         const track = document.getElementById('sliderTrack');
         const cards = Array.from(track.children);
         const nextBtn = document.getElementById('nextBtn');
