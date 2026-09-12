@@ -193,7 +193,7 @@
             background-color: #70757d;
         }
 
-        /* --- Tooltip Styles (Underneath) --- */
+        /* --- Tooltip Styles (Appearing Above) --- */
         .tooltip-wrapper {
             position: relative;
             display: inline-block;
@@ -202,7 +202,7 @@
         .tooltip-box {
             visibility: hidden;
             position: absolute;
-            top: 125%;
+            bottom: 125%; /* Positions it directly above the element */
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.9);
@@ -223,18 +223,18 @@
         .tooltip-box::after {
             content: "";
             position: absolute;
-            bottom: 100%;
+            top: 100%; /* Points the triangle downward towards the element */
             left: 50%;
             transform: translateX(-50%);
             border-width: 5px;
             border-style: solid;
-            border-color: transparent transparent rgba(0, 0, 0, 0.9) transparent;
+            border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
         }
 
         .tooltip-wrapper:hover .tooltip-box {
             visibility: visible;
             opacity: 1;
-            transform: translateX(-50%) translateY(3px);
+            transform: translateX(-50%) translateY(-3px);
         }
 
         /* Main Content / About Me Section */
@@ -489,6 +489,7 @@
             border: 1px solid rgba(255, 69, 0, 0.5);
             box-shadow: 0 2px 6px rgba(0,0,0,0.5);
             z-index: 2;
+            position: relative; /* Fixed: explicitly makes this the anchor container for the tooltip */
         }
 
         .photo-img {
@@ -845,21 +846,25 @@
     <!-- Photography Section -->
     <h2 class="photography-section-heading">PHOTOGRAPHY</h2>
     <div class="photo-grid">
-        <!-- Photo 1: Good Monke Mall (Permanently Locked First, Pinned Icon with Tooltip on Grid) -->
+        <!-- Photo 1: Good Monke Mall (Permanently Locked First, Pinned Icon with Tooltip on Top) -->
         <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall <span class='faded-red'>(Pinned)</span>">
-            <div class="card-pin-icon tooltip-wrapper">
-                <i class="fas fa-thumbtack"></i>
-                <div class="tooltip-box">Pinned</div>
+            <div class="card-pin-icon">
+                <div class="tooltip-wrapper">
+                    <i class="fas fa-thumbtack"></i>
+                    <div class="tooltip-box">Pinned</div>
+                </div>
             </div>
             <img src="./Good Monke Mall (1).jpeg" alt="Good Monke Mall" class="photo-img">
             <h3 class="photo-title">Good Monke Mall</h3>
         </div>
 
-        <!-- Photo 2: Beach (Permanently Locked Second, Pinned Icon with Tooltip on Grid) -->
+        <!-- Photo 2: Beach (Permanently Locked Second, Pinned Icon with Tooltip on Top) -->
         <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach <span class='faded-red'>(Pinned)</span>">
-            <div class="card-pin-icon tooltip-wrapper">
-                <i class="fas fa-thumbtack"></i>
-                <div class="tooltip-box">Pinned</div>
+            <div class="card-pin-icon">
+                <div class="tooltip-wrapper">
+                    <i class="fas fa-thumbtack"></i>
+                    <div class="tooltip-box">Pinned</div>
+                </div>
             </div>
             <img src="./1000056537.jpeg" alt="Beach" class="photo-img">
             <h3 class="photo-title">Beach</h3>
