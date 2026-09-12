@@ -465,10 +465,17 @@
             transform: translateY(-50%);
         }
 
-        .slider-arrow:hover, .lightbox-arrow:hover {
+        /* Hover states using transform scale only (keeping vertical centering intact) */
+        .slider-arrow:hover {
             background-color: rgba(255, 69, 0, 0.8);
             border-color: #ff4500;
-            transform: scale(1.1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-arrow:hover {
+            background-color: rgba(255, 69, 0, 0.8);
+            border-color: #ff4500;
+            transform: translateY(-50%) scale(1.1);
         }
 
         .slider-arrow.arrow-left {
