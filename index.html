@@ -447,8 +447,8 @@
             transform: scale(1.05);
         }
 
-        /* Navigation Arrows */
-        .slider-arrow {
+        /* Navigation Arrows (Shared Staff & Lightbox Styling) */
+        .slider-arrow, .lightbox-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -467,7 +467,7 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .slider-arrow:hover {
+        .slider-arrow:hover, .lightbox-arrow:hover {
             background-color: rgba(255, 69, 0, 0.8);
             border-color: #ff4500;
             transform: translateY(-50%) scale(1.1);
@@ -771,6 +771,14 @@
                 right: 10px;
             }
 
+            .lightbox-arrow.arrow-left {
+                left: 10px;
+            }
+
+            .lightbox-arrow.arrow-right {
+                right: 10px;
+            }
+
             .photo-card {
                 width: 100%;
                 max-width: 350px;
@@ -977,7 +985,7 @@
     <h2 class="photography-section-heading">PHOTOGRAPHY</h2>
     <div class="photo-grid">
         <!-- Photo 1: Good Monke Mall (Pinned) -->
-        <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall" data-pinned="true">
+        <div class="photo-card" data-index="0" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall" data-pinned="true">
             <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
             </div>
@@ -986,7 +994,7 @@
         </div>
 
         <!-- Photo 2: Beach (Pinned) -->
-        <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach" data-pinned="true">
+        <div class="photo-card" data-index="1" data-img="./1000056537.jpeg" data-title="Beach" data-pinned="true">
             <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
             </div>
@@ -995,19 +1003,19 @@
         </div>
 
         <!-- Photo 3: Caves -->
-        <div class="photo-card" data-img="./Caves (1).jpeg" data-title="Caves">
+        <div class="photo-card" data-index="2" data-img="./Caves (1).jpeg" data-title="Caves">
             <img src="./Caves (1).jpeg" alt="Caves" class="photo-img">
             <h3 class="photo-title">Caves</h3>
         </div>
 
         <!-- Photo 4: City -->
-        <div class="photo-card" data-img="./City (1).jpeg" data-title="City">
+        <div class="photo-card" data-index="3" data-img="./City (1).jpeg" data-title="City">
             <img src="./City (1).jpeg" alt="City" class="photo-img">
             <h3 class="photo-title">City</h3>
         </div>
 
         <!-- Photo 5: Mountains -->
-        <div class="photo-card" data-img="./1000056451.jpeg" data-title="Mountains">
+        <div class="photo-card" data-index="4" data-img="./1000056451.jpeg" data-title="Mountains">
             <img src="./1000056451.jpeg" alt="Mountains" class="photo-img">
             <h3 class="photo-title">Mountains</h3>
         </div>
@@ -1016,6 +1024,8 @@
     <!-- Lightbox Modal Popup -->
     <div class="lightbox-modal" id="lightboxModal">
         <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <div class="lightbox-arrow arrow-left" id="lightboxPrevBtn"><i class="fas fa-chevron-left"></i></div>
+        <div class="lightbox-arrow arrow-right" id="lightboxNextBtn"><i class="fas fa-chevron-right"></i></div>
         <div class="lightbox-content-wrapper">
             <img src="" alt="Zoomed Photo" class="lightbox-img" id="lightboxImg">
             <div class="lightbox-caption" id="lightboxCaption"></div>
@@ -1121,36 +1131,55 @@
         // Initialize pin tooltips for grid cards
         setupPinTooltipEvents(document.querySelectorAll('.card-pin-icon'));
 
-        // Lightbox Zoom Script
+        // Lightbox & Lightbox Carousel Script
         const photoCards = document.querySelectorAll('.photo-card');
         const lightboxModal = document.getElementById('lightboxModal');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
         const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+        const lightboxNextBtn = document.getElementById('lightboxNextBtn');
 
-        photoCards.forEach(card => {
+        let currentLightboxIndex = 0;
+        const totalPhotos = photoCards.length;
+
+        function updateLightboxContent(index) {
+            const card = photoCards[index];
+            const imgSrc = card.getAttribute('data-img');
+            const imgTitle = card.getAttribute('data-title');
+            const isPinned = card.getAttribute('data-pinned') === 'true';
+
+            lightboxImg.src = imgSrc;
+
+            if (isPinned) {
+                lightboxCaption.innerHTML = `${imgTitle} <span class="lightbox-pin-icon"><i class="fas fa-thumbtack"></i></span>`;
+                const lightboxPin = lightboxCaption.querySelector('.lightbox-pin-icon');
+                setupPinTooltipEvents([lightboxPin]);
+                lightboxPin.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    pinModal.classList.add('active');
+                });
+            } else {
+                lightboxCaption.textContent = imgTitle;
+            }
+        }
+
+        photoCards.forEach((card, index) => {
             card.addEventListener('click', () => {
-                const imgSrc = card.getAttribute('data-img');
-                const imgTitle = card.getAttribute('data-title');
-                const isPinned = card.getAttribute('data-pinned') === 'true';
-
-                lightboxImg.src = imgSrc;
-
-                if (isPinned) {
-                    lightboxCaption.innerHTML = `${imgTitle} <span class="lightbox-pin-icon"><i class="fas fa-thumbtack"></i></span>`;
-                    // Bind tooltip and modal click event to the newly generated lightbox pin icon
-                    const lightboxPin = lightboxCaption.querySelector('.lightbox-pin-icon');
-                    setupPinTooltipEvents([lightboxPin]);
-                    lightboxPin.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        pinModal.classList.add('active');
-                    });
-                } else {
-                    lightboxCaption.textContent = imgTitle;
-                }
-
+                currentLightboxIndex = index;
+                updateLightboxContent(currentLightboxIndex);
                 lightboxModal.classList.add('active');
             });
+        });
+
+        lightboxPrevBtn.addEventListener('click', () => {
+            currentLightboxIndex = (currentLightboxIndex - 1 + totalPhotos) % totalPhotos;
+            updateLightboxContent(currentLightboxIndex);
+        });
+
+        lightboxNextBtn.addEventListener('click', () => {
+            currentLightboxIndex = (currentLightboxIndex + 1) % totalPhotos;
+            updateLightboxContent(currentLightboxIndex);
         });
 
         function closeLightbox() {
@@ -1169,8 +1198,16 @@
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
-                closeLightbox();
+            if (lightboxModal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    currentLightboxIndex = (currentLightboxIndex - 1 + totalPhotos) % totalPhotos;
+                    updateLightboxContent(currentLightboxIndex);
+                } else if (e.key === 'ArrowRight') {
+                    currentLightboxIndex = (currentLightboxIndex + 1) % totalPhotos;
+                    updateLightboxContent(currentLightboxIndex);
+                }
             }
         });
 
