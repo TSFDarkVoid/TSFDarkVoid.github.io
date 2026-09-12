@@ -59,7 +59,7 @@
             z-index: -1;
         }
 
-        /* Header Styles (Desktop Original) */
+        /* Header Styles */
         header {
             position: fixed;
             top: 0;
@@ -84,7 +84,6 @@
             gap: 15px;
         }
 
-        /* Logo Glow: Pulses Big to Small Subtly, Never Disappears */
         @keyframes logoPulseSmooth {
             0%, 100% {
                 box-shadow: 0 0 8px rgba(255, 69, 0, 0.4);
@@ -106,7 +105,6 @@
             animation: logoPulseSmooth 6s infinite ease-in-out;
         }
 
-        /* Animated Diagonal Red Shine (Sweeping Left to Right) */
         @keyframes redDiagonalShine {
             0% {
                 background-position: 200% 0;
@@ -136,7 +134,6 @@
             animation: redDiagonalShine 3s infinite linear;
         }
 
-        /* Center Styled Text */
         .header-center-text {
             font-size: 20px;
             color: #ffffff;
@@ -199,7 +196,6 @@
             display: inline-block;
         }
 
-        /* Base Tooltip Box (Default: Bottom for Social Icons) */
         .tooltip-box {
             visibility: hidden;
             position: absolute;
@@ -387,7 +383,6 @@
             margin-bottom: 15px;
         }
 
-        /* --- Position Tag Styles --- */
         .position-tag-wrapper {
             display: flex;
             align-items: center;
@@ -447,11 +442,9 @@
             transform: scale(1.05);
         }
 
-        /* Navigation Arrows (Shared Staff & Lightbox Styling) */
+        /* --- Staff Slider Arrows & Lightbox Arrows Styling --- */
         .slider-arrow, .lightbox-arrow {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.6);
             color: #ffffff;
             border: 2px solid rgba(255, 255, 255, 0.8);
@@ -467,17 +460,22 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
+        .slider-arrow {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         .slider-arrow:hover, .lightbox-arrow:hover {
             background-color: rgba(255, 69, 0, 0.8);
             border-color: #ff4500;
-            transform: translateY(-50%) scale(1.1);
+            transform: scale(1.1);
         }
 
-        .arrow-left {
+        .slider-arrow.arrow-left {
             left: -25px;
         }
 
-        .arrow-right {
+        .slider-arrow.arrow-right {
             right: -25px;
         }
 
@@ -568,11 +566,25 @@
 
         .lightbox-content-wrapper {
             position: relative;
-            max-width: 90%;
+            max-width: 80%;
             max-height: 85vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* Lightbox arrows nestled tightly and cleanly right next to the image wrapper */
+        .lightbox-arrow {
+            top: 38%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-arrow.arrow-left {
+            left: -65px;
+        }
+
+        .lightbox-arrow.arrow-right {
+            right: -65px;
         }
 
         .lightbox-img {
@@ -772,11 +784,11 @@
             }
 
             .lightbox-arrow.arrow-left {
-                left: 10px;
+                left: -15px;
             }
 
             .lightbox-arrow.arrow-right {
-                right: 10px;
+                right: -15px;
             }
 
             .photo-card {
@@ -800,7 +812,7 @@
     </video>
     <div class="video-overlay"></div>
 
-    <!-- Global Pin Tooltip (Escapes all card / section containers) -->
+    <!-- Global Pin Tooltip -->
     <div id="globalPinTooltip">Pinned</div>
 
     <!-- Header -->
@@ -1024,9 +1036,9 @@
     <!-- Lightbox Modal Popup -->
     <div class="lightbox-modal" id="lightboxModal">
         <button class="lightbox-close" id="lightboxClose">&times;</button>
-        <div class="lightbox-arrow arrow-left" id="lightboxPrevBtn"><i class="fas fa-chevron-left"></i></div>
-        <div class="lightbox-arrow arrow-right" id="lightboxNextBtn"><i class="fas fa-chevron-right"></i></div>
         <div class="lightbox-content-wrapper">
+            <div class="lightbox-arrow arrow-left" id="lightboxPrevBtn"><i class="fas fa-chevron-left"></i></div>
+            <div class="lightbox-arrow arrow-right" id="lightboxNextBtn"><i class="fas fa-chevron-right"></i></div>
             <img src="" alt="Zoomed Photo" class="lightbox-img" id="lightboxImg">
             <div class="lightbox-caption" id="lightboxCaption"></div>
         </div>
@@ -1128,7 +1140,6 @@
             });
         }
 
-        // Initialize pin tooltips for grid cards
         setupPinTooltipEvents(document.querySelectorAll('.card-pin-icon'));
 
         // Lightbox & Lightbox Carousel Script
