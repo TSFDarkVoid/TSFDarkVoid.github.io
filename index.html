@@ -593,10 +593,25 @@
             color: #ffffff;
             letter-spacing: 1px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .faded-red {
-            color: #b3361b;
+        .lightbox-pin-icon {
+            color: #ff4500;
+            cursor: pointer;
+            font-size: 18px;
+            background-color: rgba(11, 15, 25, 0.8);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 69, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            vertical-align: middle;
         }
 
         .lightbox-close {
@@ -964,7 +979,7 @@
     <h2 class="photography-section-heading">PHOTOGRAPHY</h2>
     <div class="photo-grid">
         <!-- Photo 1: Good Monke Mall (Pinned) -->
-        <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall <span class='faded-red'>(Pinned)</span>">
+        <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall" data-pinned="true">
             <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
             </div>
@@ -973,7 +988,7 @@
         </div>
 
         <!-- Photo 2: Beach (Pinned) -->
-        <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach <span class='faded-red'>(Pinned)</span>">
+        <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach" data-pinned="true">
             <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
             </div>
@@ -1086,23 +1101,27 @@
 
         // Global Pin Tooltip Positioning Script
         const globalTooltip = document.getElementById('globalPinTooltip');
-        const pinIcons = document.querySelectorAll('.card-pin-icon');
 
-        pinIcons.forEach(icon => {
-            icon.addEventListener('mouseenter', () => {
-                const rect = icon.getBoundingClientRect();
-                globalTooltip.style.left = (rect.left + rect.width / 2) + 'px';
-                globalTooltip.style.top = (rect.top - 8) + 'px';
-                globalTooltip.style.transform = 'translate(-50%, -100%)';
-                globalTooltip.style.visibility = 'visible';
-                globalTooltip.style.opacity = '1';
-            });
+        function setupPinTooltipEvents(elements) {
+            elements.forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    const rect = icon.getBoundingClientRect();
+                    globalTooltip.style.left = (rect.left + rect.width / 2) + 'px';
+                    globalTooltip.style.top = (rect.top - 8) + 'px';
+                    globalTooltip.style.transform = 'translate(-50%, -100%)';
+                    globalTooltip.style.visibility = 'visible';
+                    globalTooltip.style.opacity = '1';
+                });
 
-            icon.addEventListener('mouseleave', () => {
-                globalTooltip.style.visibility = 'hidden';
-                globalTooltip.style.opacity = '0';
+                icon.addEventListener('mouseleave', () => {
+                    globalTooltip.style.visibility = 'hidden';
+                    globalTooltip.style.opacity = '0';
+                });
             });
-        });
+        }
+
+        // Initialize pin tooltips for grid cards
+        setupPinTooltipEvents(document.querySelectorAll('.card-pin-icon'));
 
         // Lightbox Zoom Script
         const photoCards = document.querySelectorAll('.photo-card');
@@ -1115,9 +1134,23 @@
             card.addEventListener('click', () => {
                 const imgSrc = card.getAttribute('data-img');
                 const imgTitle = card.getAttribute('data-title');
+                const isPinned = card.getAttribute('data-pinned') === 'true';
 
                 lightboxImg.src = imgSrc;
-                lightboxCaption.innerHTML = imgTitle;
+
+                if (isPinned) {
+                    lightboxCaption.innerHTML = `${imgTitle} <span class="lightbox-pin-icon"><i class="fas fa-thumbtack"></i></span>`;
+                    // Bind tooltip and modal click event to the newly generated lightbox pin icon
+                    const lightboxPin = lightboxCaption.querySelector('.lightbox-pin-icon');
+                    setupPinTooltipEvents([lightboxPin]);
+                    lightboxPin.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        pinModal.classList.add('active');
+                    });
+                } else {
+                    lightboxCaption.textContent = imgTitle;
+                }
+
                 lightboxModal.classList.add('active');
             });
         });
@@ -1147,7 +1180,7 @@
         const pinModal = document.getElementById('pinModal');
         const pinModalClose = document.getElementById('pinModalClose');
 
-        pinIcons.forEach(icon => {
+        document.querySelectorAll('.card-pin-icon').forEach(icon => {
             icon.addEventListener('click', (e) => {
                 e.stopPropagation();
                 pinModal.classList.add('active');
