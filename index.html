@@ -203,7 +203,7 @@
         .tooltip-box {
             visibility: hidden;
             position: absolute;
-            top: 125%; /* Positions it directly below the social icon */
+            top: 125%;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.9);
@@ -224,7 +224,7 @@
         .tooltip-box::after {
             content: "";
             position: absolute;
-            bottom: 100%; /* Points the triangle upward towards the social icon */
+            bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
             border-width: 5px;
@@ -238,7 +238,7 @@
             transform: translateX(-50%) translateY(3px);
         }
 
-        /* --- Global Fixed Tooltip for Pin Icon (Escapes Section Bounds) --- */
+        /* --- Global Fixed Tooltip for Pin Icon --- */
         #globalPinTooltip {
             visibility: hidden;
             position: fixed;
@@ -387,7 +387,7 @@
             margin-bottom: 15px;
         }
 
-        /* --- Position Tag Styles (Below text, above Join Button) --- */
+        /* --- Position Tag Styles --- */
         .position-tag-wrapper {
             display: flex;
             align-items: center;
@@ -512,10 +512,11 @@
             align-items: center;
             padding: 15px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+            will-change: transform;
             cursor: pointer;
             width: 320px;
-            position: relative; /* Allows absolute positioning of the pin icon */
+            position: relative;
         }
 
         .photo-card:hover {
@@ -531,6 +532,7 @@
             margin-bottom: 12px;
             border: 1px solid rgba(255, 69, 0, 0.3);
             pointer-events: none;
+            backface-visibility: hidden;
         }
 
         .photo-title {
@@ -961,7 +963,7 @@
     <!-- Photography Section -->
     <h2 class="photography-section-heading">PHOTOGRAPHY</h2>
     <div class="photo-grid">
-        <!-- Photo 1: Good Monke Mall (Permanently Locked First, Pinned Icon) -->
+        <!-- Photo 1: Good Monke Mall (Pinned) -->
         <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall <span class='faded-red'>(Pinned)</span>">
             <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
@@ -970,7 +972,7 @@
             <h3 class="photo-title">Good Monke Mall</h3>
         </div>
 
-        <!-- Photo 2: Beach (Permanently Locked Second, Pinned Icon) -->
+        <!-- Photo 2: Beach (Pinned) -->
         <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach <span class='faded-red'>(Pinned)</span>">
             <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
@@ -1028,12 +1030,12 @@
             if (charIndex < textToType.length) {
                 typingElement.textContent += textToType.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeText, 25); // Speed of typing (lower = faster)
+                setTimeout(typeText, 25);
             }
         }
 
         window.addEventListener("load", () => {
-            setTimeout(typeText, 400); // Small delay before typing starts
+            setTimeout(typeText, 400);
         });
 
         // Slider Script
@@ -1109,15 +1111,13 @@
         const lightboxCaption = document.getElementById('lightboxCaption');
         const lightboxClose = document.getElementById('lightboxClose');
 
-        photoCards.readOnlyOrder = true; // Permanent guard guarantee
-
         photoCards.forEach(card => {
             card.addEventListener('click', () => {
                 const imgSrc = card.getAttribute('data-img');
                 const imgTitle = card.getAttribute('data-title');
 
                 lightboxImg.src = imgSrc;
-                lightboxCaption.innerHTML = imgTitle; // Using innerHTML to render the faded red <span>
+                lightboxCaption.innerHTML = imgTitle;
                 lightboxModal.classList.add('active');
             });
         });
@@ -1125,20 +1125,18 @@
         function closeLightbox() {
             lightboxModal.classList.remove('active');
             setTimeout(() => {
-                lightboxImg.src = ''; // Clear source after fade out
+                lightboxImg.src = '';
             }, 300);
         }
 
         lightboxClose.addEventListener('click', closeLightbox);
 
-        // Close when clicking anywhere outside the image background
         lightboxModal.addEventListener('click', (e) => {
             if (e.target === lightboxModal) {
                 closeLightbox();
             }
         });
 
-        // Close on pressing the ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
                 closeLightbox();
@@ -1151,7 +1149,7 @@
 
         pinIcons.forEach(icon => {
             icon.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevents triggering the photo card lightbox
+                e.stopPropagation();
                 pinModal.classList.add('active');
             });
         });
