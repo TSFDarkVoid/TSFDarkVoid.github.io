@@ -239,9 +239,28 @@
         }
 
         /* --- Pin Icon Tooltip Styles (Appearing Above & Outside) --- */
+        .card-pin-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: #ff4500;
+            font-size: 16px;
+            background-color: rgba(11, 15, 25, 0.8);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 69, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            z-index: 10;
+            cursor: pointer;
+        }
+
         .card-pin-icon .tooltip-box {
             top: auto;
-            bottom: 145%; /* Pushes it further up so it clears the icon entirely */
+            bottom: 125%;
             transform: translateX(-50%);
         }
 
@@ -492,25 +511,6 @@
             border-color: #ff4500;
         }
 
-        /* Pin Icon Style on Grid Cards with Tooltip */
-        .card-pin-icon {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            color: #ff4500;
-            font-size: 16px;
-            background-color: rgba(11, 15, 25, 0.8);
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid rgba(255, 69, 0, 0.5);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-            z-index: 2;
-        }
-
         .photo-img {
             width: 100%;
             height: 180px;
@@ -601,6 +601,87 @@
         }
 
         .lightbox-close:hover {
+            color: #ff4500;
+            transform: scale(1.1);
+        }
+
+        /* --- Pin Info Modal Styles --- */
+        .pin-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pin-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .pin-modal-content {
+            position: relative;
+            background-color: rgba(11, 15, 25, 0.9);
+            border: 1px solid rgba(255, 69, 0, 0.5);
+            border-radius: 16px;
+            padding: 45px 30px 35px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+        }
+
+        .pin-modal-icon {
+            font-size: 50px;
+            color: #ff4500;
+            margin-bottom: 20px;
+            background-color: rgba(255, 69, 0, 0.1);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 69, 0, 0.4);
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.2);
+        }
+
+        .pin-modal-text {
+            font-size: 14px;
+            color: #d0d0d0;
+            line-height: 1.5;
+            letter-spacing: 0.4px;
+        }
+
+        .pin-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #ffffff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .pin-modal-close:hover {
             color: #ff4500;
             transform: scale(1.1);
         }
@@ -867,7 +948,7 @@
     <div class="photo-grid">
         <!-- Photo 1: Good Monke Mall (Permanently Locked First, Pinned Icon with Tooltip on Top) -->
         <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall <span class='faded-red'>(Pinned)</span>">
-            <div class="tooltip-wrapper card-pin-icon">
+            <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
                 <div class="tooltip-box">Pinned</div>
             </div>
@@ -877,7 +958,7 @@
 
         <!-- Photo 2: Beach (Permanently Locked Second, Pinned Icon with Tooltip on Top) -->
         <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach <span class='faded-red'>(Pinned)</span>">
-            <div class="tooltip-wrapper card-pin-icon">
+            <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
                 <div class="tooltip-box">Pinned</div>
             </div>
@@ -910,6 +991,17 @@
         <div class="lightbox-content-wrapper">
             <img src="" alt="Zoomed Photo" class="lightbox-img" id="lightboxImg">
             <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Pin Info Modal Popup -->
+    <div class="pin-modal" id="pinModal">
+        <button class="pin-modal-close" id="pinModalClose">&times;</button>
+        <div class="pin-modal-content">
+            <div class="pin-modal-icon">
+                <i class="fas fa-thumbtack"></i>
+            </div>
+            <div class="pin-modal-text">A pin indicates that it's one of DarkVoids' best artwork.</div>
         </div>
     </div>
 
@@ -1017,6 +1109,36 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
                 closeLightbox();
+            }
+        });
+
+        // Pin Info Modal Script
+        const pinIcons = document.querySelectorAll('.card-pin-icon');
+        const pinModal = document.getElementById('pinModal');
+        const pinModalClose = document.getElementById('pinModalClose');
+
+        pinIcons.forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevents triggering the photo card lightbox
+                pinModal.classList.add('active');
+            });
+        });
+
+        function closePinModal() {
+            pinModal.classList.remove('active');
+        }
+
+        pinModalClose.addEventListener('click', closePinModal);
+
+        pinModal.addEventListener('click', (e) => {
+            if (e.target === pinModal) {
+                closePinModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && pinModal.classList.contains('active')) {
+                closePinModal();
             }
         });
     </script>
