@@ -463,12 +463,32 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, border-color 0.3s ease;
             cursor: pointer;
-            width: 320px; /* Fixed width so cards look uniform and center nicely */
+            width: 320px;
+            position: relative; /* Allows absolute positioning of the pin icon */
         }
 
         .photo-card:hover {
             transform: translateY(-5px);
             border-color: #ff4500;
+        }
+
+        /* Pin Icon Style on Grid Cards */
+        .card-pin-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: #ff4500;
+            font-size: 16px;
+            background-color: rgba(11, 15, 25, 0.8);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 69, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            z-index: 2;
         }
 
         .photo-img {
@@ -478,7 +498,7 @@
             border-radius: 8px;
             margin-bottom: 12px;
             border: 1px solid rgba(255, 69, 0, 0.3);
-            pointer-events: none; /* Let card handle the click */
+            pointer-events: none;
         }
 
         .photo-title {
@@ -539,6 +559,10 @@
             color: #ffffff;
             letter-spacing: 1px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .faded-red {
+            color: #b3361b;
         }
 
         .lightbox-close {
@@ -604,6 +628,7 @@
             .social-icon img {
                 width: 24px;
                 height: 24px;
+                filter: grayscale(100%) brightness(200%);
             }
 
             .slider-container {
@@ -820,31 +845,33 @@
     <!-- Photography Section -->
     <h2 class="photography-section-heading">PHOTOGRAPHY</h2>
     <div class="photo-grid">
-        <!-- Photo 1 -->
-        <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall">
+        <!-- Photo 1: Good Monke Mall (Permanently Locked First, Pinned Icon on Grid) -->
+        <div class="photo-card" data-img="./Good Monke Mall (1).jpeg" data-title="Good Monke Mall <span class='faded-red'>(Pinned)</span>">
+            <div class="card-pin-icon"><i class="fas fa-thumbtack"></i></div>
             <img src="./Good Monke Mall (1).jpeg" alt="Good Monke Mall" class="photo-img">
             <h3 class="photo-title">Good Monke Mall</h3>
         </div>
 
-        <!-- Photo 2: Beach -->
-        <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach">
+        <!-- Photo 2: Beach (Permanently Locked Second, Pinned Icon on Grid) -->
+        <div class="photo-card" data-img="./1000056537.jpeg" data-title="Beach <span class='faded-red'>(Pinned)</span>">
+            <div class="card-pin-icon"><i class="fas fa-thumbtack"></i></div>
             <img src="./1000056537.jpeg" alt="Beach" class="photo-img">
             <h3 class="photo-title">Beach</h3>
         </div>
 
-        <!-- Photo 3 -->
+        <!-- Photo 3: Caves -->
         <div class="photo-card" data-img="./Caves (1).jpeg" data-title="Caves">
             <img src="./Caves (1).jpeg" alt="Caves" class="photo-img">
             <h3 class="photo-title">Caves</h3>
         </div>
 
-        <!-- Photo 4 -->
+        <!-- Photo 4: City -->
         <div class="photo-card" data-img="./City (1).jpeg" data-title="City">
             <img src="./City (1).jpeg" alt="City" class="photo-img">
             <h3 class="photo-title">City</h3>
         </div>
 
-        <!-- Photo 5 -->
+        <!-- Photo 5: Mountains -->
         <div class="photo-card" data-img="./1000056451.jpeg" data-title="Mountains">
             <img src="./1000056451.jpeg" alt="Mountains" class="photo-img">
             <h3 class="photo-title">Mountains</h3>
@@ -931,13 +958,15 @@
         const lightboxCaption = document.getElementById('lightboxCaption');
         const lightboxClose = document.getElementById('lightboxClose');
 
+        photoCards.readOnlyOrder = true; // Permanent guard guarantee
+
         photoCards.forEach(card => {
             card.addEventListener('click', () => {
                 const imgSrc = card.getAttribute('data-img');
                 const imgTitle = card.getAttribute('data-title');
 
                 lightboxImg.src = imgSrc;
-                lightboxCaption.textContent = imgTitle;
+                lightboxCaption.innerHTML = imgTitle; // Using innerHTML to render the faded red <span>
                 lightboxModal.classList.add('active');
             });
         });
