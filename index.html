@@ -465,7 +465,6 @@
             transform: translateY(-50%);
         }
 
-        /* Hover states using transform scale only (keeping vertical centering intact) */
         .slider-arrow:hover {
             background-color: rgba(255, 69, 0, 0.8);
             border-color: #ff4500;
@@ -580,7 +579,6 @@
             align-items: center;
         }
 
-        /* Lightbox arrows nestled tightly and cleanly right next to the image wrapper */
         .lightbox-arrow {
             top: 38%;
             transform: translateY(-50%);
@@ -1021,19 +1019,19 @@
             <h3 class="photo-title">Beach (Daytime)</h3>
         </div>
 
-        <!-- Photo 3: Beach (Nighttime) -->
-        <div class="photo-card" data-index="2" data-img="./Beach_2_1.jpg" data-title="Beach (Nighttime)">
-            <img src="./Beach_2_1.jpg" alt="Beach (Nighttime)" class="photo-img">
-            <h3 class="photo-title">Beach (Nighttime)</h3>
-        </div>
-
-        <!-- Photo 4: Megacity (Pinned) -->
-        <div class="photo-card" data-index="3" data-img="./Megacity.jpg" data-title="Megacity" data-pinned="true">
+        <!-- Photo 3: Megacity (Pinned) -->
+        <div class="photo-card" data-index="2" data-img="./Megacity.jpg" data-title="Megacity" data-pinned="true">
             <div class="card-pin-icon">
                 <i class="fas fa-thumbtack"></i>
             </div>
             <img src="./Megacity.jpg" alt="Megacity" class="photo-img">
             <h3 class="photo-title">Megacity</h3>
+        </div>
+
+        <!-- Photo 4: Beach (Nighttime) -->
+        <div class="photo-card" data-index="3" data-img="./Beach_2_1.jpg" data-title="Beach (Nighttime)">
+            <img src="./Beach_2_1.jpg" alt="Beach (Nighttime)" class="photo-img">
+            <h3 class="photo-title">Beach (Nighttime)</h3>
         </div>
 
         <!-- Photo 5: Mines -->
@@ -1192,7 +1190,7 @@
             const card = photoCards[index];
             const imgSrc = card.getAttribute('data-img');
             const imgTitle = card.getAttribute('data-title');
-            const isPinned = card.getAttribute('data-pinned'] === 'true';
+            const isPinned = card.getAttribute('data-pinned') === 'true';
 
             lightboxImg.src = imgSrc;
 
