@@ -1093,16 +1093,15 @@
         let charIndex = 0;
 
         function typeText() {
-            if (charIndex < textToType.length) {
+            if (charIndex < textToType.length && typingElement) {
                 typingElement.textContent += textToType.charAt(charIndex);
                 charIndex++;
                 setTimeout(typeText, 25);
             }
         }
 
-        window.addEventListener("load", () => {
-            setTimeout(typeText, 400);
-        });
+        // Start typing immediately
+        setTimeout(typeText, 300);
 
         // Slider Script
         const track = document.getElementById('sliderTrack');
@@ -1130,6 +1129,7 @@
         }
 
         function startAutoplay() {
+            clearInterval(slideInterval);
             slideInterval = setInterval(nextSlide, 3000);
         }
 
@@ -1137,16 +1137,28 @@
             clearInterval(slideInterval);
         }
 
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-        });
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                nextSlide();
+                stopAutoplay();
+                startAutoplay();
+            });
+        }
 
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                prevSlide();
+                stopAutoplay();
+                startAutoplay();
+            });
+        }
 
-        container.addEventListener('mouseenter', stopAutoplay);
-        container.addEventListener('mouseleave', startAutoplay);
+        if (container) {
+            container.addEventListener('mouseenter', stopAutoplay);
+            container.addEventListener('mouseleave', startAutoplay);
+        }
 
         startAutoplay();
 
@@ -1214,15 +1226,19 @@
             });
         });
 
-        lightboxPrevBtn.addEventListener('click', () => {
-            currentLightboxIndex = (currentLightboxIndex - 1 + totalPhotos) % totalPhotos;
-            updateLightboxContent(currentLightboxIndex);
-        });
+        if (lightboxPrevBtn) {
+            lightboxPrevBtn.addEventListener('click', () => {
+                currentLightboxIndex = (currentLightboxIndex - 1 + totalPhotos) % totalPhotos;
+                updateLightboxContent(currentLightboxIndex);
+            });
+        }
 
-        lightboxNextBtn.addEventListener('click', () => {
-            currentLightboxIndex = (currentLightboxIndex + 1) % totalPhotos;
-            updateLightboxContent(currentLightboxIndex);
-        });
+        if (lightboxNextBtn) {
+            lightboxNextBtn.addEventListener('click', () => {
+                currentLightboxIndex = (currentLightboxIndex + 1) % totalPhotos;
+                updateLightboxContent(currentLightboxIndex);
+            });
+        }
 
         function closeLightbox() {
             lightboxModal.classList.remove('active');
@@ -1231,16 +1247,20 @@
             }, 300);
         }
 
-        lightboxClose.addEventListener('click', closeLightbox);
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+        }
 
-        lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) {
-                closeLightbox();
-            }
-        });
+        if (lightboxModal) {
+            lightboxModal.addEventListener('click', (e) => {
+                if (e.target === lightboxModal) {
+                    closeLightbox();
+                }
+            });
+        }
 
         document.addEventListener('keydown', (e) => {
-            if (lightboxModal.classList.contains('active')) {
+            if (lightboxModal && lightboxModal.classList.contains('active')) {
                 if (e.key === 'Escape') {
                     closeLightbox();
                 } else if (e.key === 'ArrowLeft') {
@@ -1265,19 +1285,23 @@
         });
 
         function closePinModal() {
-            pinModal.classList.remove('active');
+            if (pinModal) pinModal.classList.remove('active');
         }
 
-        pinModalClose.addEventListener('click', closePinModal);
+        if (pinModalClose) {
+            pinModalClose.addEventListener('click', closePinModal);
+        }
 
-        pinModal.addEventListener('click', (e) => {
-            if (e.target === pinModal) {
-                closePinModal();
-            }
-        });
+        if (pinModal) {
+            pinModal.addEventListener('click', (e) => {
+                if (e.target === pinModal) {
+                    closePinModal();
+                }
+            });
+        }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && pinModal.classList.contains('active')) {
+            if (e.key === 'Escape' && pinModal && pinModal.classList.contains('active')) {
                 closePinModal();
             }
         });
