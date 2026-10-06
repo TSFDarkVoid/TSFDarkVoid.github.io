@@ -784,12 +784,12 @@
                 max-width: 90%;
             }
 
-            .arrow-left {
-                left: 10px;
+            .slider-arrow.arrow-left {
+                left: -15px;
             }
 
-            .arrow-right {
-                right: 10px;
+            .slider-arrow.arrow-right {
+                right: -15px;
             }
 
             .lightbox-arrow.arrow-left {
@@ -1189,7 +1189,7 @@
             const card = photoCards[index];
             const imgSrc = card.getAttribute('data-img');
             const imgTitle = card.getAttribute('data-title');
-            const isPinned = card.getAttribute('data-pinned'] === 'true';
+            const isPinned = card.getAttribute('data-pinned') === 'true';
 
             lightboxImg.src = imgSrc;
 
